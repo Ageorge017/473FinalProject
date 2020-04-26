@@ -15,6 +15,7 @@
 #include <errno.h>
 #include <stdbool.h>
 #include<string.h>
+#define STRLEN 30
 
 void HomeMenu();
 void MainMenu();
@@ -25,8 +26,7 @@ void loadGame(int saveFileNum);
 int saveDataOption;
 
 typedef struct SaveData{
-    char* playerName;
-    char* playerLocation;
+    int playerLocation;
     struct Challenges* completedChallenges;
     struct Inventory* collectedInventory;
 } saveData;
@@ -51,6 +51,18 @@ typedef struct Inventory{
     bool item4;
     bool item5;
 }inventory;
+
+const char* loccations[]={
+    "Farm Bedroom",
+    "Outside Farm",
+    "Town",
+    "Processus Procuratio",
+    "Memoria Procuratio",
+    "Procuratio Repono",
+    "Wide River",
+    "Lost Forest",
+    "Boron Mountains"
+};
 
 int main(){
 
@@ -114,22 +126,43 @@ void HomeMenu(){
 
 }
 void startNewGame(int saveFileNum){
-    char* nameInput;
-    printf("What is your name?\n");
-    scanf("%s", nameInput);
     printf("Creating new game profile.\n"); 
-    saveData initState = {nameInput, "Farm Bedroom"};
+    
     challenges initChallenges = {false,false,false,false,false,false,false,false,false,false};
     inventory initInventory = {false,false,false,false,false};
+    saveData initState = {0, &initChallenges,&initInventory};
+
+
     printf("Creating save data. Using save file %d\n", saveFileNum);
     if(saveFileNum==1){
         printf("saving file to File %d", saveFileNum);
+        FILE* fp = fopen("saveFiles/file_1","w");
+        if(fp!=NULL){
+            fwrite(&initChallenges, sizeof(challenges), 1, fp);
+            fwrite(&initInventory, sizeof(inventory), 1, fp);
+            fwrite(&initState, sizeof(saveData), 1, fp);
+        }
+        fclose(fp);
     }
     if(saveFileNum==2){
         printf("saving file to File %d", saveFileNum);
+        FILE* fp = fopen("saveFiles/file_2","w");
+        if(fp!=NULL){
+            fwrite(&initChallenges, sizeof(challenges), 1, fp);
+            fwrite(&initInventory, sizeof(inventory), 1, fp);
+            fwrite(&initState, sizeof(saveData), 1, fp);
+        }
+        fclose(fp);
     }
     if(saveFileNum==3){
         printf("saving file to File %d", saveFileNum);
+        FILE* fp = fopen("saveFiles/file_3","w");
+        if(fp!=NULL){
+            fwrite(&initChallenges, sizeof(challenges), 1, fp);
+            fwrite(&initInventory, sizeof(inventory), 1, fp);
+            fwrite(&initState, sizeof(saveData), 1, fp);
+        }
+        fclose(fp);
     }
   
 }
