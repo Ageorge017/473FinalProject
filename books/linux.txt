@@ -1,0 +1,17 @@
+--Directory Commands--
+pwd  (print working directory) - shows the directory you’re currently in.
+ls   -presents the contents of a particular directory.
+cd   (change directory) - move current location from one directory to another.
+mkdir (make directory) -create a new directory.
+rmdir (remove directory) -deletes directory.
+
+--System Manipulation--
+ps - displays information about a selection of the active processes.
+kill - signal to the process or processes specified by each pid operand.
+
+--File Manipulation--
+touch - creates a valid empty file.
+cat - concatenate multiple files.
+cp (copy) - copy a file/directory to another location.
+mv (move) - move a file/directory to another location.
+
