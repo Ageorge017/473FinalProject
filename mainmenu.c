@@ -28,7 +28,7 @@ void openMenu(saveData* playerData){
                 saveGame(playerData);
                 break;
             case(3):
-                return NULL;
+                return;
             default:
                 printChoiceErr();
 
@@ -47,24 +47,54 @@ void viewInventory(saveData* playerData){
         printf("\033[0;34m"); //blue
         if(playerData->collectedInventory->Note_Terminal){
             printf("1. Open Terminal\n");
-            printf("2. View Bedroom Note\n");
+            printf("2. View Bedroom Note\n");            
         }
-        printf("3. Exit\n");
+        if(playerData->collectedInventory->Postcard){
+            printf("3. View Postcard\n");
+        }
+        if(playerData->collectedInventory->Barflyer){
+            printf("4. View Bar Flyer\n");
+        }
+        printf("5. Exit\n");
         printf("\033[0m"); //reset
         scanf("%d",&response);
         switch(response){
             case(1):
-                openTerminal();
+                if(playerData->collectedInventory->Note_Terminal)
+                    openTerminal();
                 break;
             case(2):
-                fp=fopen("messages/bedroom_message.txt","r");
-                while((s=fgetc(fp))!=EOF) {
-                    printf("%c",s);            
+                if(playerData->collectedInventory->Note_Terminal){
+                    fp=fopen("messages/bedroom_message.txt","r");
+                    while((s=fgetc(fp))!=EOF) {
+                        printf("%c",s);            
+                    }
+                    fclose(fp);
+                    printf("\n");
                 }
-                fclose(fp);
-                printf("\n");
+                break;
             case(3):
-                return NULL;
+                if(playerData->collectedInventory->Postcard){
+                    fp=fopen("messages/postcard.txt","r");
+                    while((s=fgetc(fp))!=EOF) {
+                        printf("%c",s);            
+                    }
+                    fclose(fp);
+                    printf("\n");
+                }
+                break;
+            case(4):
+                if(playerData->collectedInventory->Barflyer){
+                    fp=fopen("messages/barflyer.txt","r");
+                    while((s=fgetc(fp))!=EOF) {
+                        printf("%c",s);            
+                    }
+                    fclose(fp);
+                    printf("\n");
+                }
+                break;
+            default:
+                return;
         }
     } 
 }

@@ -1,0 +1,41 @@
+CHAPTER 3
+PROCESS – a program in execution; process execution must progress in sequential fashion.
+
+MULTIPLE PARTS
+The program code, also called TEXT SECTION
+Current activity including PROGRAM COUNTER, processor registers
+STACK containing temporary data such as Function parameters, return addresses, local variables.
+DATA SECTION containing global variables
+HEAP containing memory dynamically allocated during run time
+
+As a process exectutes it changes STATE -
+new - process created
+running - instructions are being executed
+waiting - the process is waiting for some event to occur
+ready - the process is waiting to be assigned to a processesor
+terminated - the process has finish executing
+
+PROCESS CONTROL BLOCK contains process state, number, program counter, registers, memory limits, open file list
+
+CHAPTER 6
+*********PROCESS SCHEDULING***********
+PROCESS SCHEDULER selects among available processes for next execution on CPU
+
+BASIC CONCEPTS
+SHORT-TERM SCHEDULER selects from among the processes inready queue, and allocates the CPU to one of them
+CPU scheduling decisions may take place when a process: (NONPREEMPTIVE)
+    1.Switches from running to waiting state (NONPREEMPTIVE)
+    2.Switches from running to ready state (PREEMPTIVE)
+    3.Switches from waiting to ready (PREEMPTIVE)
+    4.Terminates (NONPREEMPTIVE)
+
+SCHEDULING CRITERIA
+CPU utilization, Throughput, turnaround time, waiting time, response time
+For optimizing CPU utilization, Throughput should be maximized and the rest should be minimized
+
+ALGORITHMS
+FIRST COME, FIRST SERVE (FCFS) - nonpremptive. executes queued processes in order of arrival. Ineffecient Throughput since short processes at the end of queue have to wait for longer process to finish.
+SHORTEST JOB FIRST (SJF) - associate each process by its CPU burst. Optimal, gives minimum average waiting time. Large processes are starved.
+SHORTEST REMAINING TIME FIRST - preemptive SJF
+PRIORITY SCHEDULING - associating a priority number to each process. preemptive and nonpremptive. Lower priority processes may be starved. Solution is  AGING - as time progresses increase priority.
+ROUND ROBIN - each process is alloted a certain amount of time to run after which the process is preempted and added to the end of ready queue.

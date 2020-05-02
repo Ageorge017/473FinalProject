@@ -10,21 +10,21 @@ typedef struct SaveData{
 
 typedef struct Challenges{
     bool lockedDoor;
-    bool challenge2;
-    bool challenge3;
-    bool challenge4;
-    bool challenge5;
-    bool challenge6;
-    bool challenge7;
-    bool challenge8;
+    bool lostforest;
+    bool boronmountains;
+    bool processus_puzzle;
+    bool river_puzzle;
+    bool fountain_puzzle;
+    bool memoria_puzzle;
+    bool repono_puzzle;
     bool challenge9;
     bool challenge10;
 }challenges;
 
 typedef struct Inventory{
     bool Note_Terminal;
-    bool item2;
-    bool item3;
+    bool Postcard;
+    bool Barflyer;
     bool item4;
     bool item5;
 }inventory;

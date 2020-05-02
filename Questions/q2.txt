@@ -1,0 +1,13 @@
+Consider the following set of processes, burst time, and arrival time for the next two questions
+
+****** PID *********** CPU BURST TIME ********* Arrival Time *********** 
+        P1                  3                       0
+        P2                  5                       2
+        P3                  2                       5
+        P4                  4                       7
+
+Question 2: Which is the correct order of processes exectued using a preemptive SFF scheduler?
+1. P1 P2 P3 P4 P2
+2. P1 P2 P3 P2 P4
+3. P1 P2 P3 P4
+4. P1 P3 P4 P3 P2 

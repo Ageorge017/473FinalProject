@@ -20,4 +20,14 @@ int procuratioRepono(saveData* playerData);
 int wideRiver(saveData* playerData);
 int lostForest(saveData* playerData);
 int boronMountains(saveData* playerData);
+int townEast(saveData* playerData);
+int townNorth(saveData* playerData);
+int townWest(saveData* playerData);
+int townSouth(saveData* playerData);
+bool lostForestQuestions();
+bool boronMountainsQuestions();
+bool riverQuestions();
+bool ProcessusFortress();
+bool MemoriaCastle();
+bool ReponoDungeon();
 #endif 

@@ -243,8 +243,19 @@ void startGame(saveData* playerData){
                 break;    
             case(8):
                 currLocation = boronMountains(playerData);
+                break; 
+            case(9):
+                currLocation = townEast(playerData);
                 break;    
-            
+            case(10):
+                currLocation = townWest(playerData);
+                break; 
+            case(11):
+                currLocation = townNorth(playerData);
+                break;
+            case(12):
+                currLocation = townSouth(playerData);
+                break;  
             default:
                 printf("Default Case Statement\n");
 

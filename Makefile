@@ -1,7 +1,7 @@
 CC = gcc
 CFLAGS = -g -Wall 
 DEPS = functions.h playerInfo.h shellcommands.h
-OBJ = main.o locations.o mainmenu.o
+OBJ = main.o locations.o mainmenu.o questions.o
 
 %.o: %.c $(DEPS)
 	$(CC) $(CFLAGS) -c -o $@ $<
@@ -14,3 +14,4 @@ clean:
 	rm -f locations.o
 	rm -f main.o
 	rm -f mainmenu.o
+	rm -f questions.o
