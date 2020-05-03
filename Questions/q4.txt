@@ -1,0 +1,15 @@
+Consider the program
+
+int main(){
+    int pid;
+    pid=A();
+    if(pid==0)
+        B();
+    C();
+}
+
+Question 1: How many new processes are created if A, B, and C are all fork systems calls?
+1. 3
+2. 4
+3. 5
+4. 6

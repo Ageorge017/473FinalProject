@@ -87,7 +87,7 @@ int bedroom(saveData* playerData){
                 printf("\033[1;31m");//bold red
                 printf("Will you read one?\n");
                 printf("\033[0;34m"); //blue
-                printf("1. Basic Linux Commands\n2.Reading Binary\n3.Crash Course on Processes\n4.Memory\n5.I don't feel like reading\n");
+                printf("1. Basic Linux Commands\n2. Reading Binary\n3. Crash Course on Processes\n4. Memory\n5. File Operations\n6. I don't feel like reading\n");
                 printf("\033[0m"); //reset
                 scanf("%d",&response);
                 switch(response){
@@ -124,6 +124,14 @@ int bedroom(saveData* playerData){
                         printf("\n");
                         break;
                     case(5):
+                        fp=fopen("books/files.txt","r");
+                        while((s=fgetc(fp))!=EOF) {
+                            printf("%c",s);
+                        }
+                        fclose(fp);
+                        printf("\n");
+                        break;
+                    case(6):
                         break;
                     default:
                         printChoiceErr();

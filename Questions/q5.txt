@@ -1,0 +1,5 @@
+Question 2: Which is NOT a difference between fork() and clone()
+1. clone has flexible sharing of resources, where fork is a complete copy
+2. clone may start code in different location, where fork starts from that location
+3. clone allows control of the stack, where fork doesn't
+4. clone returns 2, where fork only returns once

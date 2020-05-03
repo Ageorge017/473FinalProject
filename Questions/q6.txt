@@ -1,0 +1,15 @@
+Consider the program
+
+int main(){
+    int pid;
+    pid=A();
+    if(pid==0)
+        B();
+    C();
+}
+
+Question 1: How many kernel scheduleable threads are created if A is fork, B is exec, and C is clone?
+1. 1
+2. 2
+3. 3
+4. 4
