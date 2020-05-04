@@ -10,7 +10,6 @@ void startGame(saveData* playerData);
 void openMenu(saveData* playerData);
 void viewInventory(saveData* playerData);
 void saveGame(saveData* playerData);
-void openTerminal();
 int bedroom(saveData* playerData);
 int farm(saveData* playerData);
 int town(saveData* playerData);

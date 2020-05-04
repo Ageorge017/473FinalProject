@@ -46,24 +46,19 @@ void viewInventory(saveData* playerData){
         printf("What do you want to access?\n");
         printf("\033[0;34m"); //blue
         if(playerData->collectedInventory->Note_Terminal){
-            printf("1. Open Terminal\n");
-            printf("2. View Bedroom Note\n");            
+            printf("1. View Bedroom Note\n");            
         }
         if(playerData->collectedInventory->Postcard){
-            printf("3. View Postcard\n");
+            printf("2. View Postcard\n");
         }
         if(playerData->collectedInventory->Barflyer){
-            printf("4. View Bar Flyer\n");
+            printf("3. View Bar Flyer\n");
         }
-        printf("5. Exit\n");
+        printf("4. Exit\n");
         printf("\033[0m"); //reset
         scanf("%d",&response);
         switch(response){
             case(1):
-                if(playerData->collectedInventory->Note_Terminal)
-                    openTerminal();
-                break;
-            case(2):
                 if(playerData->collectedInventory->Note_Terminal){
                     fp=fopen("messages/bedroom_message.txt","r");
                     while((s=fgetc(fp))!=EOF) {
@@ -73,7 +68,7 @@ void viewInventory(saveData* playerData){
                     printf("\n");
                 }
                 break;
-            case(3):
+            case(2):
                 if(playerData->collectedInventory->Postcard){
                     fp=fopen("messages/postcard.txt","r");
                     while((s=fgetc(fp))!=EOF) {
@@ -83,7 +78,7 @@ void viewInventory(saveData* playerData){
                     printf("\n");
                 }
                 break;
-            case(4):
+            case(3):
                 if(playerData->collectedInventory->Barflyer){
                     fp=fopen("messages/barflyer.txt","r");
                     while((s=fgetc(fp))!=EOF) {
@@ -98,7 +93,5 @@ void viewInventory(saveData* playerData){
         }
     } 
 }
-void openTerminal(){
-    printf("Terminal not set up yet\n");
-}
+
 

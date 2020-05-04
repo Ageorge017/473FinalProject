@@ -25,7 +25,7 @@ typedef struct Inventory{
     bool Note_Terminal;
     bool Postcard;
     bool Barflyer;
-    bool item4;
+    bool Fountainkey;
     bool item5;
 }inventory;
 

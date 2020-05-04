@@ -69,7 +69,7 @@ int bedroom(saveData* playerData){
             case(2):
                 printf("\033[0;36m"); //cyan
                 if(!note_terminal){
-                    printf("Inside the drawer is a note and a portable linux terminal. Placed both in inventory.\nInventory can be accessed in the main menu.\n");
+                    printf("Inside the drawer is a note. Placed note in inventory.\nInventory can be accessed in the main menu.\n");
                     playerData->collectedInventory->Note_Terminal=true;
                     note_terminal=true;
                     printf("\033[0m"); //reset
@@ -87,7 +87,7 @@ int bedroom(saveData* playerData){
                 printf("\033[1;31m");//bold red
                 printf("Will you read one?\n");
                 printf("\033[0;34m"); //blue
-                printf("1. Basic Linux Commands\n2. Reading Binary\n3. Crash Course on Processes\n4. Memory\n5. File Operations\n6. I don't feel like reading\n");
+                printf("1. Basic Linux Commands\n2. Reading Binary\n3. Crash Course on Processes\n4. Memory\n5. Disk Scheduling and File Operations\n6. I don't feel like reading\n");
                 printf("\033[0m"); //reset
                 scanf("%d",&response);
                 switch(response){
@@ -169,7 +169,7 @@ int farm(saveData* playerData){
         printf("\033[1;31m");//bold red
         printf("What do you want to do?\n");
         printf("\033[0;34m"); //blue
-        printf("1. Go back in the house\n2. Go into town\n3.Open Main Menu\n");
+        printf("1. Go back in the house\n2. Go into town\n3. Open Main Menu\n");
         scanf("%d",&response);
         if (response==1){
             printf("You open the door to your house, walk inside and to your bedroom.\n");
@@ -203,13 +203,13 @@ int town(saveData* playerData){
         printf("\033[1;31m");//bold red
         printf("What do you want to do?\n");
         printf("\033[0;34m"); //blue
-        printf("1. Check the Newspaper Stand\n2. Go North\n3.Go East\n4.Go West\n5.Go South\n6. Go Back to Farm\n7. Check Water Fountain\n8. Open Main Menu\n");
+        printf("1. Check the Newspaper Stand\n2. Go North\n3. Go East\n4. Go West\n5. Go South\n6. Go Back to Farm\n7. Check Water Fountain\n8. Open Main Menu\n");
         printf("\033[0m"); //reset
         scanf("%d",&response);
         switch(response){
             case(1):
                 printf("\033[0;36m"); //cyan
-                printf("BREAKING NEWS\nLast night a shadowy figure was seen in town coming from the farm road headed east.\nReports of animal sounds were also heard but no animals were reported to be seen.\n");
+                printf("BREAKING NEWS\nLast night a suspicious person was seen in town loitering around the water fountain.\nReports of animal sounds were also heard but no animals were reported to be seen.\n");
                 printf("\033[0m"); //reset
                 break;
             case(2):
@@ -223,7 +223,26 @@ int town(saveData* playerData){
             case(6):
                 return 1;
             case(7):
-                printf("In water fountain\n");  
+                printf("\033[0;36m"); //cyan
+                printf("You're looking at the water fountain and notice a keyhole in the water.\n");
+                if(playerData->collectedInventory->Fountainkey && !playerData->completedChallenges->fountain_puzzle){
+                    printf("\033[1;31m");//bold red
+                    printf("Do you want to use your key?\n");
+                    printf("\033[0;34m"); //blue
+                    printf("1. Yes\n2. No\n");
+                    printf("\033[0m"); //reset
+                    scanf("%d",&response);
+                    if(response==1){
+                        printf("\033[0;36m"); //cyan
+                        printf("You heard a loud click as if something is being unlocked.\n");
+                        playerData->completedChallenges->fountain_puzzle=true;
+                        printf("\033[0m"); //reset
+                        printf("Autosaving\n");
+                        saveGame(playerData);
+                    }
+                }  
+                printf("\033[0;36m"); //cyan
+                printf("Returning to town center.\n");
                 break;
             case(8):
                 openMenu(playerData);
@@ -252,7 +271,7 @@ int processusProcuratio(saveData* playerData){ //east
         printf("\033[1;31m");//bold red
         printf("What do you want to do?\n");
         printf("\033[0;34m"); //blue
-        printf("1. Storm the fortress\n2. Retreat to the forest\n3.Open Main Menu\n");
+        printf("1. Storm the fortress\n2. Retreat to the forest\n3. Open Main Menu\n");
         printf("\033[0m"); //reset
         scanf("%d",&response);
         switch(response){
@@ -263,6 +282,10 @@ int processusProcuratio(saveData* playerData){ //east
                         playerData->completedChallenges->processus_puzzle=true;
                         printf("\033[0;36m"); //cyan
                         printf("Congratulations! You've found and freed some of your animals. They have returned to the farm.\n");
+                        if(playerData->completedChallenges->processus_puzzle && playerData->completedChallenges->memoria_puzzle && !(playerData->collectedInventory->Fountainkey) ){
+                            printf("You mysteriously find a key in your pocket.\n");
+                            playerData->collectedInventory->Fountainkey=true;
+                        }
                         printf("\033[0m"); //reset
                         printf("Autosaving.\n");
                         saveGame(playerData);
@@ -310,6 +333,10 @@ int memoriaProcuratio(saveData* playerData){ //west
                         playerData->completedChallenges->memoria_puzzle=true;
                         printf("\033[0;36m"); //cyan
                         printf("Congratulations! You've found and freed some of your animals. They have returned to the farm.\n");
+                        if(playerData->completedChallenges->processus_puzzle && playerData->completedChallenges->memoria_puzzle && !(playerData->collectedInventory->Fountainkey) ){
+                            printf("You mysteriously find a key in your pocket.\n");
+                            playerData->collectedInventory->Fountainkey=true;
+                        }
                         printf("\033[0m"); //reset
                         printf("Autosaving.\n");
                         saveGame(playerData);
@@ -361,7 +388,7 @@ int procuratioRepono(saveData* playerData){ //north
                         printf("\033[0m"); //reset
                         printf("Autosaving.\n");
                         saveGame(playerData);
-                        return 0;
+                        return 13;
                     }   
                 }  
                 else{
@@ -453,7 +480,7 @@ int lostForest(saveData* playerData){ //east
         printf("\033[1;31m");//bold red
         printf("What do you want to do?\n");
         printf("\033[0;34m"); //blue
-        printf("1. I have to go forward\n2. I'm scared and want to go back to town\n3.Open Main Menu\n");
+        printf("1. I have to go forward\n2. I'm scared and want to go back to town\n3. Open Main Menu\n");
         printf("\033[0m"); //reset
         scanf("%d",&response);
         switch(response){
@@ -533,6 +560,10 @@ int boronMountains(saveData* playerData){ //west
                     if(challenge_passed){
                         playerData->completedChallenges->boronmountains=true;
                         printf("\033[0m"); //reset
+                        if(playerData->completedChallenges->processus_puzzle && playerData->completedChallenges->memoria_puzzle && !(playerData->collectedInventory->Fountainkey) ){
+                            printf("You mysteriously find a key in your pocket.\n");
+                            playerData->collectedInventory->Fountainkey=true;
+                        }
                         printf("Autosaving.\n");
                         saveGame(playerData);
                     }   
@@ -560,7 +591,7 @@ int townEast(saveData* playerData){
         printf("\033[1;31m");//bold red
         printf("What do you want to do?\n");
         printf("\033[0;34m"); //blue
-        printf("1. Go inside Post Office\n 2. Leave Town East\n3. Go back to Town Center\n4. Open Main Menu\n");
+        printf("1. Go inside Post Office\n2. Leave Town East\n3. Go back to Town Center\n4. Open Main Menu\n");
         printf("\033[0m"); //reset
         scanf("%d",&response);
         switch(response){
@@ -576,9 +607,9 @@ int townEast(saveData* playerData){
                 switch(response){
                     case(1):
                         printf("\033[0;36m"); //cyan
-                        printf("Post lady says something.\n");
+                        printf("She said while she was closing up the post office she saw someone leave town through the nearby gate.\nShe also mentions that the person dropped a postcard addressed to you.\n");
                         if(!playerData->collectedInventory->Postcard){
-                            printf("Here, a postcard came for you. Take it.\n Recieved Postcard. Placed it in inventory.\n");
+                            printf("Take it. Recieved Postcard. Placed it in inventory.\n");
                             playerData->collectedInventory->Postcard=true;
                             printf("\033[0m"); //reset
                             printf("Autosaving.\n");
@@ -605,7 +636,43 @@ int townEast(saveData* playerData){
     }
 }
 int townNorth(saveData* playerData){
-    return 2;
+    int response;
+    printf("\033[0;36m"); //cyan
+    printf("You are now in Town North. There is a construction worker standing at the gate.\n");
+    while(1){
+        printf("\033[1;31m");//bold red
+        printf("What do you want to do?\n");
+        printf("\033[0;34m"); //blue
+        printf("1. Leave Town North\n2. Talk to construction worker\n3. Go back to Town Center\n4. Open Main Menu\n");
+        printf("\033[0m"); //reset
+        scanf("%d",&response);
+        switch(response){
+            case(1):
+                if(playerData->completedChallenges->fountain_puzzle){
+                    return 6;
+                }
+                else{
+                    printf("\033[0;36m"); //cyan
+                    printf("The gate is locked!\n");
+                }
+                break;
+            case(2):
+                if(playerData->completedChallenges->fountain_puzzle){
+                    printf("The construction worker seemed surprised and curious about the gate's mysterious unlocking..\n");
+                }
+                else{
+                    printf("The construction worker mentioned that the gate has been mysteriously stuck since early morning and they are trying to figure out why.\n");
+                }           
+                break;
+            case(3):
+                return 2;
+            case(4):
+                openMenu(playerData);
+                break;
+            default:
+                printChoiceErr();
+        }
+    }
 }
 int townWest(saveData* playerData){
     int response;
@@ -615,7 +682,7 @@ int townWest(saveData* playerData){
         printf("\033[1;31m");//bold red
         printf("What do you want to do?\n");
         printf("\033[0;34m"); //blue
-        printf("1. Go inside bar\n 2. Leave Town West\n3. Go back to Town Center\n4. Open Main Menu\n");
+        printf("1. Go inside bar\n2. Leave Town West\n3. Go back to Town Center\n4. Open Main Menu\n");
         printf("\033[0m"); //reset
         scanf("%d",&response);
         switch(response){
@@ -631,9 +698,9 @@ int townWest(saveData* playerData){
                 switch(response){
                     case(1):
                         printf("\033[0;36m"); //cyan
-                        printf("Bartender says something.\n");
+                        printf("The bartender says that some guy came in here and posted a flyer on the bulletin. \n");
                         if(!playerData->collectedInventory->Barflyer){
-                            printf("Here's a flyer.\n Recieved Bar Flyer. Placed it in inventory.\n");
+                            printf("Here's the flyer.\n Recieved Bar Flyer. Placed it in inventory.\n");
                             playerData->collectedInventory->Barflyer=true;
                             printf("\033[0m"); //reset
                             printf("Autosaving.\n");
@@ -642,7 +709,7 @@ int townWest(saveData* playerData){
                         break;
                     case(2):
                         printf("\033[0;36m"); //cyan
-                        printf("Locals say something\n");
+                        printf("They say that some guy covered in feathers came in handing out flyers. He bought us all drinks and gave the rest of the flyers to the bartender.\n Leaving bar.\n");
                         break;
                     case(3):
                         break;

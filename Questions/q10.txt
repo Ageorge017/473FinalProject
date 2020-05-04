@@ -1,0 +1,8 @@
+Consider the queue 98, 183, 37, 122, 14, 124, 65, 67   (0-199)
+Head is currently at 53
+
+Question 1: Using SCAN algorithm, which is the order of the requests being served?
+1. 65 67 37 14 98 122 124 183
+2. 14 37 65 67 98 122 124 183 
+3. 37 14 65 67 98 122 124 183
+4. 65 67 98 122 124 183 14 37

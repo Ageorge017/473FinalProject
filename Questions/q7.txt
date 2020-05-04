@@ -1,0 +1,6 @@
+Question 1: Each Thread Control Block stores which of the following 3 for each thread?
+
+1. State, registers, locks 
+2. Stack pointer, program counter, registers
+3. Thread id, locks, stack pointer
+4. State, thead id, return address

@@ -1,2 +1,43 @@
+CHAPTER 9
+*********DISK SCHEDULING***********
+The operating system is responsible for using hardware efficiently. One of these is DISK SCHEDULING in which OS wants to minimize seek time.
+Disk BANDWIDTH is the total number of bytes transferred, divided by the total time between the first request for service and the completion of the last transfer.
+There are many sources of disk I/O request. I/O request includes input or output mode, disk address, memory address, number of sectors to transfer.
+OS maintains queue of requests, per disk or device.
+
+Optimzation through various algorithms.
+
+*We illustrate scheduling algorithms with a request queue
+
+*********DISK SCHEDULING ALGORITHMS***********
+FIRST-COME, FIRST-SERVE (FCFS): serves request in order of arrival.
+SHORTEST SEEK TIME FIRST (FSTF): selects the request with the minimum seek time from the current head position. Starvation with larger seek time requests.
+SCAN: he disk arm starts at one end of the disk, and moves toward the other end, servicing requests until it gets to the other end of the disk, where the head movement is reversed and servicing continues.  if requests are uniformly dense, largest density at other end of disk and those wait the longest.
+C-SCAN: Same as scan except when the head reaches the end, it returns to the begining of the disk without serviceing any requests on the return trip.
+C-LOOK: verison of scan except arm only goes as far as the last request in each direction, then reverses direction immediately, without first going all the way to the end of the disk.
+
+SCAN and C-SCAN perform better for systems that place a heavy load on the disk. Less starvation. Performance depends on the number and types of requests
+Either SSTF or LOOK is a reasonable choice for the default algorithm.
+
 CHAPTER 10
 *********FILE SYSTEM INTERFACE***********
+Information about files are kept in the directory structure, which is maintained on the disk. 
+
+FILE OPERATIONS
+CREATE
+WRITE – at write pointer location
+READ – at read pointer location
+Reposition within file - SEEK 
+DELETE
+TRUNCATE
+OPEN(Fi)– search the directory structure on disk for entry Fi, and move the content of entry to memory
+CLOSE(Fi)– move the content of entry Fi in memory to directory structure on disk
+
+Several pieces of data are needed to manage open files:
+OPEN-FILE TABLE: tracks open files
+FILE POINTER: pointer to last read/write location, per process that has the file open
+FILE-OPEN COUNTER: counter of number of times a file is open – to allow removal of data from open-file table when last processes closes it
+Disk location of the file: Cache of data access information
+Access rights: per-process access mode information
+
+

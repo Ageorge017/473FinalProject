@@ -199,26 +199,57 @@ bool MemoriaCastle(){
 }
 bool riverQuestions(){
     int response;
+    FILE* fp;
+    char s;
     printf("\033[0;36m"); //cyan
-    printf("Welcome to the River Gaunlet. In order to unlock the boat you have to answer all questions relating to memory correctly.\nTo quit anytime, enter 0.\n");
+    printf("Welcome to the River Gaunlet. In order to unlock the boat you have to answer all questions correctly.\nTo quit anytime, enter 0.\n");
     printf("\033[1;31m");//bold red
-    printf("Question 1: True or False? The TLB caches address translations.\n");
-    printf("\033[0;34m"); //blue
-    printf("1. True\n2. False\n");
+   fp=fopen("Questions/q7.txt","r");
+    while((s=fgetc(fp))!=EOF) {
+        printf("%c",s);            
+    }
+    fclose(fp);
+    printf("\n");
     printf("\033[0m"); //reset
     scanf("%d",&response);
-    if(response==1){
+    if(response==2){
         printf("\033[0;32m");
         printf("CORRECT!\n");
     }
     else{
-        printf("Going back to the mountains.\n");
+        printf("INCORRECT! EXiting gauntlet.\n");
         return false;
     }
     printf("\033[1;31m");//bold red
-    printf("Question 2: True or False? When the first function in the library is invoked, the dynamic linker will load in the Dynamically Linked Library (DLL).\n");
+    printf("Question 2: When using contiguous memory allocation and the worst-fit method, a request for 1000 bytes of memory given 2 holes each of size 1800 and 3000 bytes results in what kind of fragmentation?\n");
     printf("\033[0;34m"); //blue
-    printf("1. True\n2. False\n");
+    printf("1. Internal\n2. External\n");
+    scanf("%d",&response);
+
+    if(response==2){
+        printf("\033[0;32m");//GREEN
+        printf("CORRECT!\n");
+    }
+    else{
+        printf("INCORRECT! EXiting gauntlet.\n");
+        return false;
+    }
+    return true;
+}
+bool ReponoDungeon(){
+    FILE* fp;
+    char s;
+    int response;
+    printf("\033[0;36m"); //cyan
+    printf("Welcome to the Dungeon Gaunlet. In order to free your animals you have to answer all questions.\nTo quit anytime, enter 0.\n");
+    printf("\033[1;31m");//bold red
+    fp=fopen("Questions/q8.txt","r");
+    while((s=fgetc(fp))!=EOF) {
+        printf("%c",s);            
+    }
+    fclose(fp);
+    printf("\n");
+    printf("\033[0m"); //reset
     scanf("%d",&response);
 
     if(response==1){
@@ -226,11 +257,45 @@ bool riverQuestions(){
         printf("CORRECT!\n");
     }
     else{
-        printf("Going back to the mountain\n");
+        printf("INCORRECT! Exiting gaunlet.\n");        
         return false;
     }
+    printf("\033[1;31m");//bold red
+    fp=fopen("Questions/q9.txt","r");
+    while((s=fgetc(fp))!=EOF) {
+        printf("%c",s);            
+    }
+    fclose(fp);
+    printf("\n");
+    printf("\033[0m"); //reset
+    scanf("%d",&response);
+
+    if(response==4){
+        printf("\033[0;32m");//Green
+        printf("CORRECT!\n");
+    }
+    else{
+        printf("INCORRECT! Exiting gaunlet.\n");
+        return false;
+    }
+    printf("\033[1;31m");//bold red
+    fp=fopen("Questions/q10.txt","r");
+    while((s=fgetc(fp))!=EOF) {
+        printf("%c",s);            
+    }
+    fclose(fp);
+    printf("\n");
+    printf("\033[0m"); //reset
+    scanf("%d",&response);
+
+    if(response==3){
+        printf("\033[0;32m");//Green
+        printf("CORRECT!\n");
+    }
+    else{
+        printf("INCORRECT! Exiting gaunlet.\n");
+        return false;
+    }
+
     return true;
-}
-bool ReponoDungeon(){
-    return false;
 }

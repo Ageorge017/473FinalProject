@@ -36,6 +36,7 @@ const char* locations[]={
 int main(){
 
     HomeMenu();
+    printf("Gracefully exiting game\n");
     return 0;
     
 }
@@ -63,7 +64,7 @@ void HomeMenu(){
                 if(saveDataOption==1||saveDataOption==2||saveDataOption==3){
                     startNewGame(saveDataOption);
                     loadGame(saveDataOption);
-                    break;
+                    return;
                 }
                 else{
                     printf("\033[1;31m"); //red
@@ -89,7 +90,7 @@ void HomeMenu(){
                 scanf("%d", &saveDataOption);
                 if(saveDataOption==1||saveDataOption==2||saveDataOption==3){
                     loadGame(saveDataOption);
-                    break;
+                    return;
                 }
                 else{
                     printf("\033[1;31m"); //red
@@ -202,6 +203,11 @@ void loadGame(int saveFileNum){
     currData->collectedInventory=currInventory;
     currData->storyTold=currStory;
     startGame(currData);
+    free(currChallenges);
+    free(currInventory);
+    free(currStory);
+    free(currData);
+    return;
 }
 // "Farm Bedroom",
 //     "Outside Farm",
@@ -256,6 +262,9 @@ void startGame(saveData* playerData){
             case(12):
                 currLocation = townSouth(playerData);
                 break;  
+            case(13):
+                return;
+                break;
             default:
                 printf("Default Case Statement\n");
 
