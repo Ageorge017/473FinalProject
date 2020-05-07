@@ -1,6 +1,6 @@
 CC = gcc
 CFLAGS = -g -Wall 
-DEPS = functions.h playerInfo.h shellcommands.h
+DEPS = functions.h playerInfo.h
 OBJ = main.o locations.o mainmenu.o questions.o
 
 %.o: %.c $(DEPS)
